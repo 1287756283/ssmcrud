@@ -11,6 +11,7 @@ import com.ssmcrud.bean.Employee;
 import com.ssmcrud.bean.Msg;
 import com.ssmcrud.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
@@ -23,6 +24,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 /**
  * 处理员工CRUD请求
@@ -184,7 +186,7 @@ public class EmployeeController {
      * @param pn
      * @return
      */
-    @RequestMapping("/emps")
+    @RequestMapping("/emps1")
     @ResponseBody
     public Msg getEmpsWithJson(
             @RequestParam(value = "pn", defaultValue = "1") Integer pn) {
@@ -205,10 +207,11 @@ public class EmployeeController {
      *
      * @return
      */
-    // @RequestMapping("/emps")
+     @RequestMapping("/emps")
     public String getEmps(
-            @RequestParam(value = "pn", defaultValue = "1") Integer pn,
-            Model model) {
+             @RequestParam(value = "pn", defaultValue = "1") Integer pn,
+             Model model) {
+
         // 这不是一个分页查询；
         // 引入PageHelper分页插件
         // 在查询之前只需要调用，传入页码，以及每页的大小
